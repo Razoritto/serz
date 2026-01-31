@@ -1,0 +1,7 @@
+
+#Xaero's Minimap / World Map compatibility
+[xaero]
+	#If enabled, BiohazardChanges will control Xaero's Minimap/World Map rendering based on Console sync.
+	#If disabled, BiohazardChanges will not interfere with Xaero's mods and the Console Sync tab is disabled.
+	enabled = false
+

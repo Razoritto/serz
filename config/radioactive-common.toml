@@ -1,0 +1,257 @@
+
+["Radioactive Mod Configuration"]
+
+	#General Settings
+	#Core mod behavior and limits
+	["Radioactive Mod Configuration".general]
+		#Maximum radiation level a player can accumulate (in rads)
+		#Higher values allow more extreme radiation poisoning
+		#Range: 0.0 ~ 10000.0
+		maxRadiation = 1200.0
+		#Whether radiation levels persist after player death
+		#If false, radiation is cleared on death (easier gameplay)
+		persistRadiationOnDeath = false
+
+	#User Interface Settings
+	#Audio and visual feedback options
+	["Radioactive Mod Configuration".interface]
+		#Enable geiger counter clicking sounds
+		#Provides audio feedback for radiation levels
+		enableGeigerSounds = true
+		#Volume of geiger counter sounds (0.0 = silent, 1.0 = full volume)
+		#Range: 0.0 ~ 1.0
+		geigerSoundVolume = 0.4
+		#Show an action bar message when entering/leaving a safe area (Radiation Absorber protected chunks)
+		enableSafeAreaActionbarMessages = true
+
+	#Radiation Sources Configuration
+	#Settings for various sources of radiation exposure
+	["Radioactive Mod Configuration".sources]
+		#Radius (in blocks) for scanning environmental radiation sources
+		#Larger values may impact performance but provide more accurate radiation
+		#Range: 0.0 ~ 256.0
+		environmentalScanRadius = 64.0
+		#Whether radiation from multiple structures combines
+		#If false, only the highest structure radiation applies
+		stackStructureRadiation = false
+		#Detection radius (in blocks) for radioactive mobs
+		#How close you must be to receive radiation from creatures
+		#Range: 0.0 ~ 50.0
+		mobRadiationRadius = 5.0
+		#Detection radius (in blocks) for dropped radioactive items
+		#How close you must be to receive radiation from items on the ground
+		#Range: 0.0 ~ 20.0
+		itemEntityRadiationRadius = 5.0
+		#Enable radiation exposure from direct sunlight
+		#Simulates solar radiation effects (experimental feature)
+		sunRadiation = false
+		#Maximum radiation per second from sun exposure (at noon)
+		#Range: 0.0 ~ 50.0
+		sunRadiationPeakRate = 0.5
+		#Radiation per second from radioactive fog effect
+		#Range: 0.0 ~ 100.0
+		fogRadiationAmount = 5.0
+		#Distance from world spawn (in blocks) where distance radiation begins
+		#Set to very high value to effectively disable this feature
+		#Range: 0.0 ~ 100000.0
+		distanceRadiationThreshold = 100000.0
+		#Additional radiation per block beyond the distance threshold
+		#Creates 'wasteland' effect far from spawn
+		#Range: 0.0 ~ 1.0
+		radiationPerBlockDistance = 0.004999999888241291
+		#Enable radiation exposure based on Y-level (altitude).
+		#Can be used to create irradiated lower or upper layers of the world.
+		heightRadiationEnabled = false
+		#The Y-level that is considered 'safe'.
+		#Radiation will be applied for each block *below* this altitude.
+		#Range: -64 ~ 320
+		heightRadiationSafeAltitude = 64
+		#Amount of radiation to apply per block below the safe altitude.
+		#This value is multiplied by the distance below the safe altitude.
+		#Range: 0.0 ~ 10.0
+		heightRadiationPerBlock = 0.01
+		#Enable radiation from items carried in player inventory
+		enableInventoryRadiation = true
+		#Enable radiation from items carried in Backpacked backpacks (compat)
+		#Has no effect if Backpacked is not present
+		enableBackpackedRadiation = true
+		#Enable environmental block radiation scanning (includes indexed world sources)
+		enableBlockRadiation = true
+		#Enable radiation from containers (chests, inventories in world, etc)
+		#If disabled, containers will not be indexed as radiation sources
+		enableContainerRadiation = false
+		#Enable radiation from biomes
+		enableBiomeRadiation = true
+		#Enable radiation from structures
+		enableStructureRadiation = true
+		#Enable radiation from dimensions
+		enableDimensionRadiation = true
+		#Enable misc radiation sources (distance, sun, fog)
+		enableMiscRadiation = true
+		#Enable radiation from mobs/entities that emit radiation
+		enableMobRadiation = true
+		#Enable radiation from dropped item entities
+		enableItemEntityRadiation = true
+
+	#Radiation Decay & Processing
+	#How radiation levels change over time and advanced decay mechanics
+	["Radioactive Mod Configuration".decay]
+		#Enable natural radiation decay over time
+		#If disabled, radiation will only decrease through medicine/effects
+		enableRadiationDecay = true
+		#Base radiation decay rate (rads per second)
+		#Higher values = faster recovery from radiation
+		#Range: 0.0 ~ 100.0
+		radiationDecayRate = 0.5
+		#Minimum radiation level where natural decay stops
+		#Prevents infinite tiny decrements, set to 0 to disable
+		#Range: 0.0 ~ 10.0
+		minimumDecayThreshold = 0.25
+		#Decay rate multiplier for high radiation levels
+		#Makes severe radiation poisoning clear faster (more forgiving)
+		#Range: 0.1 ~ 5.0
+		highRadiationDecayMultiplier = 1.5
+		#Radiation level (in rads) above which high decay multiplier applies
+		#Severe radiation above this level decays faster
+		#Range: 0.0 ~ 1200.0
+		decayBoostThreshold = 600.0
+		#Decay rate multiplier for low radiation levels
+		#Makes light radiation linger longer (more realistic)
+		#Range: 0.1 ~ 2.0
+		lowRadiationDecayMultiplier = 0.5
+		#Radiation level (in rads) below which low decay multiplier applies
+		#Light radiation below this level decays slower
+		#Range: 0.0 ~ 200.0
+		decayReductionThreshold = 100.0
+
+	#Radiation Effects
+	#Visual and gameplay effects caused by radiation exposure
+	["Radioactive Mod Configuration".effects]
+		#Movement speed modifier for radiation sickness effect
+		#Negative values slow the player down when irradiated
+		#Range: -1.0 ~ 0.0
+		woozySpeedModifier = -0.05
+		#Random movement deviation intensity during radiation sickness
+		#Higher values make movement more unpredictable
+		#Range: 0.0 ~ 1.0
+		woozyOffsetMagnitude = 0.08
+		#Camera shake intensity during severe radiation exposure
+		#Set to 0 to disable camera effects
+		#Range: 0.0 ~ 50.0
+		woozyCameraWobble = 5.0
+		#Volume of the death ringing sound effect during fatal radiation
+		#Plays when radiation reaches critical levels
+		#Range: 0.0 ~ 2.0
+		deathRingingVolume = 1.0
+
+	#Protection & Medicine
+	#Radiation protection, armor, medicine, and treatment options
+	["Radioactive Mod Configuration".protection]
+		#How multiple radiation protection sources combine:
+		#ADDITIVE: 10% + 20% = 30% total reduction
+		#MULTIPLICATIVE: 10% and 20% = 28% total reduction (more realistic)
+		#Allowed Values: ADDITIVE, MULTIPLICATIVE
+		protectionStackingStrategy = "ADDITIVE"
+		#Reduction in protection effectiveness when in radioactive fog
+		#0.1 = 10% less effective, simulating fog penetration
+		#Range: 0.0 ~ 1.0
+		fogRadiationReduction = 0.10000000149011612
+		#Maximum level for the Anti-Radiation enchantment
+		#Higher levels provide more protection
+		#Range: 1 ~ 10
+		antiRadMaxLevel = 3
+		#Whether Anti-Radiation enchantment is treasure-only
+		#If true, cannot be obtained through normal enchanting
+		antiRadIsTreasure = true
+		#Radiation protection per enchantment level (as decimal)
+		#0.2 = 20% protection per level
+		#Range: 0.0 ~ 1.0
+		antiRadReductionPerLevel = 0.013
+		#Radiation protection for Tier 1 armor (basic protection)
+		#Percentage of radiation blocked (0.12 = 12% reduction)
+		#Range: 0.0 ~ 1.0
+		tier1RadiationReduction = 0.12
+		#Radiation protection for Tier 2 armor (improved protection)
+		#Percentage of radiation blocked (0.16 = 16% reduction)
+		#Range: 0.0 ~ 1.0
+		tier2RadiationReduction = 0.16
+		#Radiation protection for Tier 3 armor (advanced protection)
+		#Percentage of radiation blocked (0.20 = 20% reduction)
+		#Range: 0.0 ~ 1.0
+		tier3RadiationReduction = 0.2
+		#Radiation removed per level of Radiation Flushing effect
+		#Higher values make medicine more effective
+		#Range: 0 ~ 100
+		flushingAmountPerLevel = 10
+		#Maximum safe amplifier level for Rad-X resistance effect
+		#Higher levels may cause negative side effects
+		#Range: 0 ~ 10
+		radXCapAmount = 1
+		#Percentage of inventory radiation reduced by Industrial Tongs
+		#0.75 = 75% reduction when carrying radioactive items
+		#Range: 0.0 ~ 1.0
+		tongsInventoryRadiationReduction = 1.0
+		#Whether Industrial Tongs degrade from protecting against radiation
+		#If false, tongs never break from radiation exposure
+		tongsHaveDurability = true
+		#Maximum durability of Industrial Tongs
+		#Higher values make tongs last longer
+		#Range: 1 ~ 1000
+		tongsMaxDamage = 250
+		#Chance per second that tongs take 1 damage per radioactive item stack
+		#0.1 = 10% chance per second per radioactive stack
+		#Range: 0.0 ~ 1.0
+		tongsDamageChance = 0.1
+
+	#Performance & Technical Settings
+	#Optimization settings that may impact performance
+	["Radioactive Mod Configuration".performance]
+		#How often mob radiation is recalculated (in ticks)
+		#Higher values improve performance but reduce accuracy (20 ticks = 1 second)
+		#Range: 1 ~ 200
+		mobRadiationCacheInterval = 60
+		#Probability to validate radiation sources each second (0.0-1.0)
+		#Lower values improve performance but may allow invalid sources to persist
+		#Only change if experiencing performance issues
+		#Range: 0.0 ~ 1.0
+		stochasticValidationProbability = 0.02
+		#The radius, in chunks, around the player to scan for environmental radiation sources.
+		#Range: 1 ~ 16
+		playerScanRadiusChunks = 4
+		#Enable a periodic rescan for radioactive entities as a fallback.
+		#This is a safety net and should be disabled unless you experience issues with entities not being detected.
+		#Disabled by default to favor event-driven detection.
+		enableEntityRescanFallback = false
+		#How often container inventories are re-scanned for radiation changes (in ticks).
+		#Higher values improve performance but increase detection latency.
+		#100 ticks = 5 seconds, 200 ticks = 10 seconds.
+		#Range: 20 ~ 600
+		containerRescanIntervalTicks = 100
+		#Max number of containers to rescan for radiation changes per tick.
+		#Distributes the load of rescanning over time to prevent tick spikes.
+		#Higher values scan faster but may cause more lag.
+		#Range: 1 ~ 1000
+		containerScanBudgetPerTick = 50
+		#Radius (in chunks) around spawn to scan for containers on server start.
+		#This only scans already-loaded chunks (won't force chunk loads).
+		#Set to 0 to disable startup scanning entirely (containers will be discovered as chunks load).
+		#Range: 0 ~ 64
+		containerStartupScanRadiusChunks = 4
+		#High-priority container scan radius around each player (in chunks).
+		#Containers near active players are rescanned more frequently to reduce perceived latency.
+		#Set to 0 to disable proximity-based prioritization.
+		#Range: 0 ~ 16
+		containerNearbyScanRadiusChunks = 1
+		#How often to enqueue proximity-based high-priority container rescans (in ticks).
+		#Lower values update nearby containers faster but increase CPU usage.
+		#20 ticks = 1 second.
+		#Range: 1 ~ 200
+		containerNearbyScanIntervalTicks = 20
+
+	#Debug Settings
+	#Enable/disable verbose logging for radiation systems
+	["Radioactive Mod Configuration".debug]
+		#Enable verbose radiation debug logs
+		#When enabled, radiation systems will emit detailed debug logs (may spam the log and impact performance)
+		enableRadiationDebugLogs = false
+
