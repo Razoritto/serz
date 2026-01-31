@@ -1,0 +1,5 @@
+*.fma filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+config/fancymenu/assets/biohazard_mainbg.fma filter=lfs diff=lfs merge=lfs -text
+tacz/Suffuse-GunSmoke-Pack1.0.7--hotfix.zip filter=lfs diff=lfs merge=lfs -text
+tacz/[Tacz1.1.5+]CIBR_GunsPack_v0.2.zip filter=lfs diff=lfs merge=lfs -text
